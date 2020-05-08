@@ -61,23 +61,36 @@ public class LibrarySimulation implements Library {
         return shelf.getISBNs(shelfName);
     }
 
+    private List<Long> getISBNsForPredicate(int limit, Predicate<Book> checker) {
+        int i = 1;
+        List<Long> isbnList = new ArrayList<>();
+        for (Long isbn : isbnMap.keySet()) {
+            if (checker.check(isbnMap.get(isbn))) {
+                isbnList.add(isbn);
+                if (i++ == limit)
+                    break;
+            }
+        }
+        return isbnList;
+    }
+
     public List<Long> getISBNsForGenre(String genre, int limit) {
-        throw new UnsupportedOperationException();
+        return getISBNsForPredicate(limit, b -> b.getGenre().equals(genre));
     }
 
     public List<Long> getISBNsForAuthor(String author, int limit) {
-        throw new UnsupportedOperationException();
+        return getISBNsForPredicate(limit, b -> b.getAuthor().equals(author));
     }
 
     public List<Long> getISBNsForPublisher(String publisher, int limit) {
-        throw new UnsupportedOperationException();
+        return getISBNsForPredicate(limit, b -> b.getPublisher().equals(publisher));
     }
 
     public List<Long> getISBNsPublishedAfterYear(short publicationYear, int limit) {
-        throw new UnsupportedOperationException();
+        return getISBNsForPredicate(limit, b -> b.getPublicationYear() > publicationYear);
     }
 
     public List<Long> getISBNsWithMinimumPageCount(int minimumPageCount, int limit) {
-        throw new UnsupportedOperationException();
+        return getISBNsForPredicate(limit, b -> b.getPageCount() >= minimumPageCount);
     }
 }

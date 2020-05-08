@@ -59,10 +59,10 @@ class ShelfTest {
     @Test
     void getISBNs() {
         List<Long> expected1 = new ArrayList<>();
-        expected1.add(Long.valueOf(517542095));
-        expected1.add(Long.valueOf(1101904224));
+        expected1.add((long)517542095);
+        expected1.add((long)1101904224);
         List<Long> expected2 = new ArrayList<>();
-        expected2.add(Long.valueOf(345404475));
+        expected2.add((long)345404475);
 
         Shelf shelf = new Shelf(2, "Science Fiction");
         Book b1 = new Book(345404475, "Do Androids Dream of Electric Sheep?", "Dick, Philip",
