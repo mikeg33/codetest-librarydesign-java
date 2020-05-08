@@ -28,6 +28,8 @@ public class LibrarySimulation implements Library {
         return true;
     }
 
+    /* Finds the book by its ISBN.
+     * If the ISBN does not exist in the library, returns null. */
     public String getBookTitle(long isbn) {
         Book book = isbnMap.get(isbn);
         if (book == null) {
@@ -44,6 +46,8 @@ public class LibrarySimulation implements Library {
         return shelfNames;
     }
 
+    /* Finds the shelf name by one of its book's ISBN.
+     * If the ISBN does not exist in the library, returns null. */
     public String findShelfNameForISBN(long isbn) {
         Book book = isbnMap.get(isbn);
         if (book == null) {
